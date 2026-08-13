@@ -419,8 +419,8 @@ p:last-child {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.45) 35%, rgba(10, 10, 10, 0.88) 78%, rgba(10, 10, 10, 0.96) 100%),
-    linear-gradient(90deg, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0.25) 55%, rgba(10, 10, 10, 0.45) 100%);
+    linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.62) 32%, rgba(10, 10, 10, 0.9) 72%, rgba(10, 10, 10, 0.97) 100%),
+    linear-gradient(90deg, rgba(10, 10, 10, 0.82) 0%, rgba(10, 10, 10, 0.45) 52%, rgba(10, 10, 10, 0.55) 100%);
 }
 
 .hero-content {
@@ -527,7 +527,6 @@ p:last-child {
   height: 100%;
   min-height: 22rem;
   object-fit: cover;
-  filter: contrast(1.05) saturate(0.92);
 }
 
 .split-media::after {
@@ -682,8 +681,8 @@ p:last-child {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.78) 48%, rgba(10, 10, 10, 0.55) 100%),
-    linear-gradient(180deg, rgba(10, 10, 10, 0.35), rgba(10, 10, 10, 0.75));
+    linear-gradient(90deg, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.84) 48%, rgba(10, 10, 10, 0.7) 100%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.45), rgba(10, 10, 10, 0.82));
 }
 
 .members-content {
@@ -720,9 +719,9 @@ p:last-child {
 
 .coach-photo img {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  filter: grayscale(0.15) contrast(1.05);
+  object-position: center top;
 }
 
 .coach-photo::before {
@@ -764,13 +763,14 @@ p:last-child {
 
 @media (min-width: 900px) {
   .coach-grid {
-    grid-template-columns: 0.95fr 1.05fr;
+    grid-template-columns: 0.85fr 1.15fr;
     gap: 3.5rem;
   }
 
   .coach-photo img {
-    aspect-ratio: 5 / 4;
-    min-height: 28rem;
+    aspect-ratio: 3 / 4;
+    min-height: 32rem;
+    max-height: 40rem;
   }
 }
 
@@ -1056,7 +1056,7 @@ p:last-child {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10, 10, 10, 0.72), rgba(10, 10, 10, 0.9)),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.78), rgba(10, 10, 10, 0.92)),
     radial-gradient(circle at center, rgba(200, 16, 46, 0.22), transparent 60%);
 }
 
