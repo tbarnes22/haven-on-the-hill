@@ -32,12 +32,28 @@ Then visit [http://localhost:8080](http://localhost:8080).
 ```
 index.html              # Landing page
 css/styles.css          # Styles
-js/main.js              # Nav, FAQ accordion, form thank-you
+js/main.js              # Nav, FAQ accordion, FormSubmit AJAX + thank-you
 assets/images/          # Logo + vendored photography (no hotlinks)
 ```
 
+## Free class form → email
+
+Submissions POST to [FormSubmit](https://formsubmit.co/) and email **info@cnyjiujitsu.com**.
+
+- Endpoint: `https://formsubmit.co/ajax/info@cnyjiujitsu.com`
+- Subject: `Haven on the Hill — free class pass`
+- Visitors stay on the page and see the **YOU’RE IN** thank-you state (AJAX / fetch, not a FormSubmit redirect page)
+
+### One-time inbox confirmation (required)
+
+The first time FormSubmit receives a submission for a new address, it emails that inbox an activation link.
+
+**Thomas:** check **info@cnyjiujitsu.com** for a message from FormSubmit and click **Confirm email** / activate. Until that link is clicked, new leads will not arrive. After activation, submissions go through normally.
+
+Spam tip: FormSubmit also uses a honeypot field (`_honey`) on this form.
+
 ## Notes
 
-- Free class form has no backend: submit shows an in-page thank-you state.
 - SEO title/description and canonical URL target `https://cnyjiujitsu.com/syracuse-jiu-jitsu`.
 - Brand: Haven Jiu Jitsu — black / red / white. HQ: Baldwinsville, NY. New location: inside TruFitness, Syracuse.
+- Header matches the live site nav; Haven on the Hill is page content, not a separate brand mark in the header.

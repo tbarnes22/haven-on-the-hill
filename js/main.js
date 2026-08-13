@@ -95,7 +95,7 @@
   /* Referral field toggle */
   const syncReferrer = () => {
     if (!referred || !referrerField || !referrerInput) return;
-    const show = referred.value === "yes";
+    const show = referred.value === "Yes";
     referrerField.hidden = !show;
     referrerInput.required = show;
     if (!show) referrerInput.value = "";
@@ -106,9 +106,21 @@
     syncReferrer();
   }
 
-  /* Form submit → thank you (no backend) */
+  /* Form submit → FormSubmit email + in-page thank you */
   if (form && success) {
-    form.addEventListener("submit", (event) => {
+    const formError = document.querySelector("#form-error");
+    const submitBtn = document.querySelector("#form-submit-btn");
+    const endpoint = form.getAttribute("action") || "https://formsubmit.co/ajax/info@cnyjiujitsu.com";
+
+    const showThankYou = () => {
+      form.hidden = true;
+      if (formError) formError.hidden = true;
+      success.hidden = false;
+      success.setAttribute("tabindex", "-1");
+      success.focus();
+    };
+
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       let valid = true;
@@ -130,10 +142,48 @@
         return;
       }
 
-      form.hidden = true;
-      success.hidden = false;
-      success.setAttribute("tabindex", "-1");
-      success.focus();
+      if (formError) {
+        formError.hidden = true;
+        formError.textContent = "";
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: new FormData(form),
+        });
+
+        let payload = null;
+        try {
+          payload = await response.json();
+        } catch (_) {
+          payload = null;
+        }
+
+        if (!response.ok || (payload && payload.success === "false")) {
+          throw new Error((payload && (payload.message || payload.error)) || "Submission failed");
+        }
+
+        showThankYou();
+      } catch (_) {
+        if (formError) {
+          formError.hidden = false;
+          formError.textContent =
+            "Something went wrong sending your request. Please try again, or email info@cnyjiujitsu.com / call (315) 745-8274.";
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Claim My Free Class Pass";
+        }
+      }
     });
 
     form.querySelectorAll("input, select").forEach((field) => {

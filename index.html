@@ -299,66 +299,76 @@
             <p>Thanks for claiming your free class at Haven Jiu Jitsu. We’ll reach out with the next steps and details for training at Haven on the Hill. Opening information for the new location will be shared as soon as it is confirmed. We’ll see you on the mats.</p>
             <p class="referral-note">Referred by a Haven member? Make sure you gave us their name so we can properly credit the referral.</p>
           </div>
-          <form id="free-class-form" novalidate>
+          <form
+            id="free-class-form"
+            action="https://formsubmit.co/ajax/info@cnyjiujitsu.com"
+            method="POST"
+            novalidate
+          >
             <h3 class="form-title">Claim your free Haven class</h3>
+            <input type="hidden" name="_subject" value="Haven on the Hill — free class pass" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="field-row">
               <div class="field">
                 <label for="first-name">First Name</label>
-                <input id="first-name" name="firstName" type="text" autocomplete="given-name" required />
+                <input id="first-name" name="First Name" type="text" autocomplete="given-name" required />
               </div>
               <div class="field">
                 <label for="last-name">Last Name</label>
-                <input id="last-name" name="lastName" type="text" autocomplete="family-name" required />
+                <input id="last-name" name="Last Name" type="text" autocomplete="family-name" required />
               </div>
             </div>
             <div class="field">
               <label for="phone">Mobile Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+              <input id="phone" name="Mobile Phone" type="tel" autocomplete="tel" required />
             </div>
             <div class="field">
               <label for="email">Email Address</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
+              <input id="email" name="Email" type="email" autocomplete="email" required />
             </div>
             <div class="field">
               <label for="for-who">Who is the free class for?</label>
-              <select id="for-who" name="forWho" required>
+              <select id="for-who" name="Who is the free class for?" required>
                 <option value="">Select one</option>
-                <option value="me">Me</option>
-                <option value="child">My Child</option>
-                <option value="family">Me and My Family</option>
+                <option value="Me">Me</option>
+                <option value="My Child">My Child</option>
+                <option value="Me and My Family">Me and My Family</option>
               </select>
             </div>
             <div class="field">
               <label for="location">Preferred Location</label>
-              <select id="location" name="location" required>
+              <select id="location" name="Preferred Location" required>
                 <option value="">Select one</option>
-                <option value="syracuse">Haven on the Hill - Syracuse</option>
-                <option value="baldwinsville">Haven Jiu Jitsu - Baldwinsville</option>
-                <option value="either">Either Location</option>
+                <option value="Haven on the Hill - Syracuse">Haven on the Hill - Syracuse</option>
+                <option value="Haven Jiu Jitsu - Baldwinsville">Haven Jiu Jitsu - Baldwinsville</option>
+                <option value="Either Location">Either Location</option>
               </select>
             </div>
             <div class="field">
               <label for="experience">Experience Level</label>
-              <select id="experience" name="experience" required>
+              <select id="experience" name="Experience Level" required>
                 <option value="">Select one</option>
-                <option value="never">Never Trained Before</option>
-                <option value="beginner">Beginner</option>
-                <option value="experienced">Experienced</option>
+                <option value="Never Trained Before">Never Trained Before</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Experienced">Experienced</option>
               </select>
             </div>
             <div class="field">
               <label for="referred">Were you referred by a Haven member?</label>
-              <select id="referred" name="referred" required>
+              <select id="referred" name="Referred by a Haven member?" required>
                 <option value="">Select one</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
               </select>
             </div>
             <div class="field" id="referrer-field" hidden>
               <label for="referrer">Haven Member Who Referred You</label>
-              <input id="referrer" name="referrer" type="text" autocomplete="off" />
+              <input id="referrer" name="Haven Member Who Referred You" type="text" autocomplete="off" />
             </div>
-            <button class="btn btn-primary btn-block" type="submit">Claim My Free Class Pass</button>
+            <p id="form-error" class="form-error" hidden role="alert"></p>
+            <button class="btn btn-primary btn-block" type="submit" id="form-submit-btn">Claim My Free Class Pass</button>
             <p class="legal">By submitting, you agree to receive calls and text messages from Haven Jiu Jitsu regarding your free class and membership information. Msg &amp; data rates may apply. Reply STOP to opt out.</p>
           </form>
         </div>

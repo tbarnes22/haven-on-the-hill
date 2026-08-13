@@ -1083,6 +1083,32 @@ p:last-child {
   color: var(--muted-dark);
 }
 
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.form-error {
+  margin: 0 0 0.85rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid rgba(225, 24, 48, 0.55);
+  background: rgba(225, 24, 48, 0.12);
+  color: #ffd5db;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+#form-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+}
+
 .form-success {
   padding: 0.5rem 0.25rem 0.75rem;
 }
