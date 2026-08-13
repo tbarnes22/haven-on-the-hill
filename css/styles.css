@@ -247,7 +247,7 @@ p:last-child {
 }
 
 .brand img {
-  width: 3.4rem;
+  width: 4.1rem;
   height: auto;
 }
 
@@ -378,7 +378,14 @@ p:last-child {
   }
 
   .site-header .btn-nav {
-    display: none;
+    min-height: 2.25rem;
+    padding: 0.4rem 0.7rem;
+    font-size: 0.8rem;
+    margin-left: auto;
+  }
+
+  .nav-toggle {
+    margin-left: 0.35rem;
   }
 }
 
