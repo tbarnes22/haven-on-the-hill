@@ -8,6 +8,7 @@
   const referred = document.querySelector("#referred");
   const referrerField = document.querySelector("#referrer-field");
   const referrerInput = document.querySelector("#referrer");
+  const dropdownItems = document.querySelectorAll(".has-dropdown");
 
   if (year) {
     year.textContent = String(new Date().getFullYear());
@@ -15,11 +16,44 @@
 
   const onScroll = () => {
     if (!header) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 12);
+    header.classList.toggle("is-scrolled", window.scrollY > 8);
   };
 
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* Desktop dropdowns — hover CSS + click/keyboard support */
+  const closeAllDropdowns = (except) => {
+    dropdownItems.forEach((item) => {
+      if (item === except) return;
+      item.classList.remove("is-open");
+      const trigger = item.querySelector(".nav-trigger");
+      if (trigger) trigger.setAttribute("aria-expanded", "false");
+    });
+  };
+
+  dropdownItems.forEach((item) => {
+    const trigger = item.querySelector(".nav-trigger");
+    if (!trigger) return;
+
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
+      const open = !item.classList.contains("is-open");
+      closeAllDropdowns(item);
+      item.classList.toggle("is-open", open);
+      trigger.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".has-dropdown")) {
+      closeAllDropdowns();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeAllDropdowns();
+  });
 
   if (toggle && mobileNav) {
     const setOpen = (open) => {
