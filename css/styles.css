@@ -1212,67 +1212,6 @@ p:last-child {
   max-width: 40rem;
 }
 
-/* Final CTA */
-.section-final {
-  min-height: min(80vh, 38rem);
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  isolation: isolate;
-  text-align: center;
-}
-
-.final-bg {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-}
-
-.final-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.final-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(10, 10, 10, 0.78), rgba(10, 10, 10, 0.92)),
-    radial-gradient(circle at center, rgba(200, 16, 46, 0.22), transparent 60%);
-}
-
-.final-content {
-  max-width: 48rem;
-  margin: 0 auto;
-}
-
-.final-content h2 {
-  max-width: none;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.final-content .lead {
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--muted);
-}
-
-.final-content .cta-row {
-  justify-content: center;
-}
-
-.contact-line {
-  margin-top: 1.5rem;
-  color: var(--muted);
-}
-
-.contact-line a {
-  color: var(--white-pure);
-  font-weight: 600;
-}
-
 /* Footer */
 .site-footer {
   background: #050505;
