@@ -6,51 +6,71 @@ Built for the site slug `/syracuse-jiu-jitsu`.
 
 ## Preview locally
 
-This is a static site (HTML + CSS + JS). No build step or package install required.
-
-**Option A — open the file**
+This is a static site (HTML + CSS + JS) with one Vercel serverless function for lead email.
 
 ```bash
-open index.html
-# or double-click index.html in Finder / File Explorer
-```
+# Install API dependency (Resend)
+npm install
 
-**Option B — local server (recommended)**
-
-```bash
-# Python
+# Static preview only (form POST needs the API)
 python3 -m http.server 8080
 
-# or Node
-npx --yes serve -l 8080
+# Full local preview with /api/lead
+npx vercel dev
 ```
 
-Then visit [http://localhost:8080](http://localhost:8080).
+Then visit [http://localhost:8080](http://localhost:8080) (or the URL `vercel dev` prints).
 
 ## Project structure
 
 ```
 index.html              # Landing page
-css/styles.css          # Styles
-js/main.js              # Nav, FAQ accordion, FormSubmit AJAX + thank-you
-assets/images/          # Logo + vendored photography (no hotlinks)
+css/styles.css
+js/main.js              # Nav, FAQ, lead form → /api/lead
+api/lead.js             # Vercel serverless → Resend email
+vercel.json
+assets/images/          # Logo + vendored photography
 ```
 
-## Free class form → email
+## Free class form → email (Resend)
 
-Submissions POST to [FormSubmit](https://formsubmit.co/) and email **info@cnyjiujitsu.com**.
+Submissions `POST` JSON to **`/api/lead`**, which sends email with [Resend](https://resend.com).
 
-- Endpoint: `https://formsubmit.co/ajax/info@cnyjiujitsu.com`
-- Subject: `Haven on the Hill — free class pass`
-- Visitors stay on the page and see the **YOU’RE IN** thank-you state (AJAX / fetch, not a FormSubmit redirect page)
+| Field | Value |
+| --- | --- |
+| To | `info@cnyjiujitsu.com` (`LEAD_TO_EMAIL`) |
+| CC | `tbarnes22@gmail.com` (`LEAD_CC_EMAIL`) |
+| From | `Haven Jiu Jitsu <noreply@cnyjiujitsu.com>` (`LEAD_FROM_EMAIL`) |
+| Reply-To | visitor email |
+| Subject | Haven on the Hill — free class pass |
 
-### One-time inbox confirmation (required)
+Visitors stay on the page and see the **YOU’RE IN** thank-you on success.
 
-The first time FormSubmit receives a submission for a new address, it emails that inbox an activation link.
+### Environment variables (Vercel)
 
-**Thomas:** check **info@cnyjiujitsu.com** for a message from FormSubmit and click **Confirm email** / activate. Until that link is clicked, new leads will not arrive. After activation, submissions go through normally.
+Set these in the Vercel project — **never commit secrets**.
 
-Spam tip: FormSubmit also uses a honeypot field (`_honey`) on this form.
+| Name | Required | Notes |
+| --- | --- | --- |
+| `RESEND_API_KEY` | yes | From Resend dashboard |
+| `LEAD_FROM_EMAIL` | recommended | Must use a **verified Resend domain** (default `Haven Jiu Jitsu <noreply@cnyjiujitsu.com>`) |
+| `LEAD_TO_EMAIL` | optional | Default `info@cnyjiujitsu.com` |
+| `LEAD_CC_EMAIL` | optional | Default `tbarnes22@gmail.com` |
+
+Copy `.env.example` for local `vercel dev`.
+
+### GitHub Pages → Vercel API
+
+If the static lander is hosted on GitHub Pages, point the form at the Vercel function:
+
+```html
+<script>
+  window.HAVEN_LEAD_API = "https://YOUR-VERCEL-DEPLOYMENT.vercel.app/api/lead";
+</script>
+<script src="js/main.js" defer></script>
+```
+
+CORS allows `https://cnyjiujitsu.com`, `https://tbarnes22.github.io`, localhost, and same-origin.
 
 ## Notes
 

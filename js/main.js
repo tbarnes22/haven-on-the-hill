@@ -106,11 +106,17 @@
     syncReferrer();
   }
 
-  /* Form submit → FormSubmit email + in-page thank you */
+  /* Form submit → Resend via /api/lead + in-page thank you */
   if (form && success) {
     const formError = document.querySelector("#form-error");
     const submitBtn = document.querySelector("#form-submit-btn");
-    const endpoint = form.getAttribute("action") || "https://formsubmit.co/ajax/info@cnyjiujitsu.com";
+
+    const getLeadEndpoint = () => {
+      if (typeof window.HAVEN_LEAD_API === "string" && window.HAVEN_LEAD_API.trim()) {
+        return window.HAVEN_LEAD_API.trim();
+      }
+      return "/api/lead";
+    };
 
     const showThankYou = () => {
       form.hidden = true;
@@ -152,24 +158,38 @@
         submitBtn.textContent = "Sending…";
       }
 
+      const payload = {
+        firstName: form.querySelector("#first-name")?.value?.trim() || "",
+        lastName: form.querySelector("#last-name")?.value?.trim() || "",
+        phone: form.querySelector("#phone")?.value?.trim() || "",
+        email: form.querySelector("#email")?.value?.trim() || "",
+        forWho: form.querySelector("#for-who")?.value || "",
+        preferredLocation: form.querySelector("#location")?.value || "",
+        experience: form.querySelector("#experience")?.value || "",
+        referred: form.querySelector("#referred")?.value || "",
+        referrer: form.querySelector("#referrer")?.value?.trim() || "",
+        _honey: form.querySelector("#honey")?.value || "",
+      };
+
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch(getLeadEndpoint(), {
           method: "POST",
           headers: {
             Accept: "application/json",
+            "Content-Type": "application/json",
           },
-          body: new FormData(form),
+          body: JSON.stringify(payload),
         });
 
-        let payload = null;
+        let data = null;
         try {
-          payload = await response.json();
+          data = await response.json();
         } catch (_) {
-          payload = null;
+          data = null;
         }
 
-        if (!response.ok || (payload && payload.success === "false")) {
-          throw new Error((payload && (payload.message || payload.error)) || "Submission failed");
+        if (!response.ok || (data && data.ok === false)) {
+          throw new Error((data && data.error) || "Submission failed");
         }
 
         showThankYou();

@@ -1,0 +1,9 @@
+{
+  "name": "haven-on-the-hill",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Haven on the Hill Syracuse landing page",
+  "dependencies": {
+    "resend": "^4.0.0"
+  }
+}
