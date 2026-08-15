@@ -206,6 +206,17 @@ p:last-child {
   margin: 1.5rem 0;
 }
 
+/* When embedded (e.g. on cnyjiujitsu.com), hide the duplicate custom nav
+   so the parent WordPress/Thrive header is the only menu. Standalone
+   GitHub Pages keeps .site-header for a usable preview. */
+body.in-iframe {
+  --header-h: 0px;
+}
+
+body.in-iframe .site-header {
+  display: none;
+}
+
 /* Header — match live cnyjiujitsu.com bar */
 .site-header {
   position: sticky;
