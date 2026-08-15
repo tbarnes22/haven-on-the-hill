@@ -1,75 +1,13 @@
 (() => {
-  const header = document.querySelector(".site-header");
-  const toggle = document.querySelector(".nav-toggle");
-  const mobileNav = document.querySelector("#mobile-nav");
   const year = document.querySelector("#year");
   const form = document.querySelector("#free-class-form");
   const success = document.querySelector("#form-success");
   const referred = document.querySelector("#referred");
   const referrerField = document.querySelector("#referrer-field");
   const referrerInput = document.querySelector("#referrer");
-  const dropdownItems = document.querySelectorAll(".has-dropdown");
 
   if (year) {
     year.textContent = String(new Date().getFullYear());
-  }
-
-  const onScroll = () => {
-    if (!header) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 8);
-  };
-
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-
-  /* Desktop dropdowns — hover CSS + click/keyboard support */
-  const closeAllDropdowns = (except) => {
-    dropdownItems.forEach((item) => {
-      if (item === except) return;
-      item.classList.remove("is-open");
-      const trigger = item.querySelector(".nav-trigger");
-      if (trigger) trigger.setAttribute("aria-expanded", "false");
-    });
-  };
-
-  dropdownItems.forEach((item) => {
-    const trigger = item.querySelector(".nav-trigger");
-    if (!trigger) return;
-
-    trigger.addEventListener("click", (event) => {
-      event.preventDefault();
-      const open = !item.classList.contains("is-open");
-      closeAllDropdowns(item);
-      item.classList.toggle("is-open", open);
-      trigger.setAttribute("aria-expanded", open ? "true" : "false");
-    });
-  });
-
-  document.addEventListener("click", (event) => {
-    if (!event.target.closest(".has-dropdown")) {
-      closeAllDropdowns();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeAllDropdowns();
-  });
-
-  if (toggle && mobileNav) {
-    const setOpen = (open) => {
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      mobileNav.hidden = !open;
-    };
-
-    toggle.addEventListener("click", () => {
-      const open = toggle.getAttribute("aria-expanded") !== "true";
-      setOpen(open);
-    });
-
-    mobileNav.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => setOpen(false));
-    });
   }
 
   /* FAQ accordion — keyboard accessible */
