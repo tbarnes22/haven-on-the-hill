@@ -3,182 +3,531 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Appointments | Haven Jiu Jitsu</title>
-  <meta name="description" content="Book a free class at Haven Jiu Jitsu in Baldwinsville or Haven On The Hill in Syracuse." />
-  <meta name="robots" content="noindex" />
+  <title>Book a Class | Haven Jiu Jitsu</title>
+  <meta name="description" content="Book a class at Haven Jiu Jitsu in Baldwinsville or Haven On The Hill in Syracuse. All experience levels welcome." />
+  <link rel="icon" href="../assets/images/logo-haven-lockup.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #fff;
-      --text: #202124;
-      --muted: #5f6368;
-      --border: #dadce0;
-      --border-hover: #bdc1c6;
-      --navy: #1a2744;
-      --navy-soft: #243556;
-      --focus: #1a73e8;
-      --radius: 8px;
-      --shadow-hover: 0 1px 2px rgba(60, 64, 67, 0.15), 0 2px 6px rgba(60, 64, 67, 0.1);
+      --red: #c8102e;
+      --red-hover: #a80d26;
+      --black: #0a0a0a;
+      --text: #111111;
+      --muted: #6b6b6b;
+      --line: #e5e5e5;
+      --card-border: #e0e0e0;
+      --bg: #ffffff;
+      --font: "Montserrat", "Archivo", system-ui, sans-serif;
+      --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Google Sans", "Product Sans", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--bg);
+      font-family: var(--font);
       color: var(--text);
-      line-height: 1.45;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      background: var(--bg);
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
 
-    .page {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 48px 24px 32px;
-      flex: 1;
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
+
+    .wrap {
+      width: min(100% - 48px, var(--max));
+      margin-inline: auto;
     }
 
-    /* Header */
-    .brand {
-      text-align: center;
-      margin-bottom: 48px;
+    /* ——— Header ——— */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
     }
 
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--navy);
-      color: #fff;
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 76px;
+      width: min(100% - 40px, var(--max));
+      margin-inline: auto;
+    }
+
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .logo-haven {
+      font-family: "Archivo", var(--font);
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: 0.08em;
+      color: var(--black);
+      text-transform: uppercase;
+    }
+
+    .logo-haven .logo-e {
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo-haven .logo-e::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0.08em;
+      height: 0.18em;
+      background: var(--red);
+    }
+
+    .logo-sub {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 3px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--red);
+      text-transform: uppercase;
+    }
+
+    .logo-belt {
+      width: 18px;
+      height: 10px;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav a {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--black);
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+    }
+
+    .nav a:hover,
+    .nav a.is-active {
+      color: var(--red);
+      border-bottom-color: var(--red);
+    }
+
+    .nav .caret {
+      font-size: 9px;
+      margin-left: 2px;
+      opacity: 0.7;
+    }
+
+    .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
-      font-weight: 600;
+      gap: 6px;
+      background: var(--red);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 22px;
+      border-radius: 2px;
+      transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      background: #e01830;
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(200, 16, 46, 0.4);
+      filter: brightness(1.08);
+    }
+
+    .card:hover .btn {
+      background: #e01830;
+      box-shadow: 0 3px 10px rgba(200, 16, 46, 0.35);
+      filter: brightness(1.08);
+    }
+
+    .btn:active {
+      background: var(--red-hover);
+      filter: none;
+    }
+
+    .btn-header { flex-shrink: 0; }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 2px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--black);
+      position: relative;
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 18px;
+      height: 2px;
+      background: var(--black);
+    }
+
+    .menu-toggle span::before { top: -6px; }
+    .menu-toggle span::after { top: 6px; }
+
+    /* ——— Hero ——— */
+    .hero {
+      position: relative;
+      min-height: clamp(340px, 48vw, 460px);
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(105deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.4) 100%),
+        url("../assets/images/gym-1280.jpg") center / cover no-repeat;
+    }
+
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      right: -2%;
+      top: 8%;
+      width: min(42vw, 420px);
+      height: min(42vw, 420px);
+      background: url("../assets/images/logo-light.png") center / contain no-repeat;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 72px 0;
+      width: min(100% - 48px, var(--max));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::after {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .hero h1 {
+      font-family: "Archivo", var(--font);
+      font-weight: 900;
+      font-size: clamp(2.6rem, 7vw, 4.5rem);
+      line-height: 0.95;
       letter-spacing: 0.02em;
-      margin-bottom: 16px;
+      text-transform: uppercase;
+      max-width: 14ch;
+      margin-bottom: 18px;
     }
 
-    .brand h1 {
-      font-size: 28px;
+    .hero h1 .accent { color: var(--red); }
+
+    .hero-lead {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
       font-weight: 500;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      margin-bottom: 4px;
+      color: rgba(255,255,255,0.9);
+      max-width: 36rem;
     }
 
-    .brand .subtitle {
-      font-size: 16px;
-      color: var(--muted);
-      font-weight: 400;
+    /* ——— Location sections ——— */
+    .locations {
+      padding: 72px 0 40px;
+      background: #fff;
     }
 
-    /* Location sections */
     .location {
-      margin-bottom: 48px;
+      width: min(100% - 48px, var(--max));
+      margin-inline: auto;
+      padding-bottom: 56px;
     }
 
-    .location:last-of-type {
-      margin-bottom: 24px;
+    .location-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
-    .location-heading {
-      font-size: 18px;
+    .location-label::after {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .location h2 {
+      font-family: "Archivo", var(--font);
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+      color: var(--black);
+    }
+
+    .location-hint {
+      color: var(--muted);
+      font-size: 0.95rem;
       font-weight: 500;
-      color: var(--text);
-      margin-bottom: 20px;
-      text-align: left;
+      margin-bottom: 28px;
     }
 
-    /* Card grid */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      width: min(100% - 48px, var(--max));
+      margin: 8px auto 56px;
+      color: var(--red);
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ——— Cards ——— */
     .grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      gap: 18px;
     }
 
     .card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
+      display: flex;
+      flex-direction: column;
       background: #fff;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 20px 20px 24px;
-      min-height: 148px;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-      cursor: pointer;
+      border: 2px solid var(--card-border);
+      border-radius: 10px;
+      padding: 21px 19px 19px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      min-height: 100%;
       text-align: left;
-      font: inherit;
-      width: 100%;
+      transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+      will-change: transform;
     }
 
-    .card:hover,
-    .card:focus-visible {
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-hover);
-      outline: none;
+    .card:hover {
+      border-color: var(--red);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.14),
+        0 4px 10px rgba(200, 16, 46, 0.18);
+      transform: translateY(-6px);
     }
 
-    .card:focus-visible {
-      outline: 2px solid var(--focus);
-      outline-offset: 2px;
+    .card:focus-within {
+      border-color: var(--red);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.14),
+        0 4px 10px rgba(200, 16, 46, 0.18);
+      transform: translateY(-6px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card,
+      .btn {
+        transition: none;
+      }
+      .card:hover,
+      .card:focus-within {
+        transform: none;
+      }
     }
 
     .card-title {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 8px;
-      line-height: 1.35;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--black);
+      line-height: 1.25;
+      margin-bottom: 10px;
     }
 
     .card-meta {
       display: flex;
       align-items: center;
-      gap: 6px;
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 10px;
+      gap: 7px;
+      color: var(--red);
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
     .card-meta svg {
+      width: 15px;
+      height: 15px;
       flex-shrink: 0;
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
     }
 
     .card-desc {
-      font-size: 14px;
       color: var(--muted);
-      line-height: 1.4;
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.45;
+      flex: 1;
+      margin-bottom: 18px;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 4;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 24px 16px 40px;
-      color: #80868b;
-      font-size: 12px;
+    .card-desc.no-clamp {
+      -webkit-line-clamp: unset;
+      display: block;
+      overflow: visible;
     }
 
-    /* Coming soon panel */
+    .card .btn {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    /* ——— Footer CTA ——— */
+    .cta-footer {
+      position: relative;
+      color: #fff;
+      text-align: center;
+      padding: 88px 24px;
+      overflow: hidden;
+    }
+
+    .cta-footer-media {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.82)),
+        url("../assets/images/training-fb.jpg") center / cover no-repeat;
+      filter: grayscale(0.35) contrast(1.05);
+    }
+
+    .cta-footer-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin-inline: auto;
+    }
+
+    .cta-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .cta-eyebrow::before,
+    .cta-eyebrow::after {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .cta-footer h2 {
+      font-family: "Archivo", var(--font);
+      font-weight: 900;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .cta-footer p {
+      color: rgba(255,255,255,0.88);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    .site-note {
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+      padding: 18px 16px 28px;
+      background: #fff;
+    }
+
+    /* ——— Toast ——— */
     .toast {
       position: fixed;
       inset: 0;
-      background: rgba(32, 33, 36, 0.45);
+      background: rgba(0,0,0,0.5);
       display: none;
       align-items: center;
       justify-content: center;
@@ -186,199 +535,296 @@
       padding: 24px;
     }
 
-    .toast.is-open {
-      display: flex;
-    }
+    .toast.is-open { display: flex; }
 
     .toast-panel {
       background: #fff;
-      border-radius: 12px;
-      padding: 28px 24px 20px;
-      max-width: 360px;
+      border-radius: 8px;
+      padding: 28px 24px 22px;
+      max-width: 380px;
       width: 100%;
-      box-shadow: 0 8px 28px rgba(60, 64, 67, 0.28);
       text-align: center;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
     }
 
-    .toast-panel h2 {
-      font-size: 18px;
-      font-weight: 500;
+    .toast-panel h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
       margin-bottom: 8px;
     }
 
     .toast-panel p {
-      font-size: 14px;
       color: var(--muted);
+      font-size: 0.92rem;
       margin-bottom: 20px;
     }
 
-    .toast-panel button {
-      appearance: none;
-      border: none;
-      background: var(--navy);
-      color: #fff;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 10px 24px;
-      border-radius: 4px;
-      cursor: pointer;
+    /* ——— Responsive ——— */
+    @media (max-width: 1024px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .nav { display: none; }
+      .header-inner.nav-open .nav {
+        display: flex;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 20px 16px;
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+      }
+      .header-inner.nav-open .nav a {
+        padding: 12px 4px;
+        border-bottom: 1px solid var(--line);
+      }
+      .menu-toggle { display: inline-flex; }
+      .header-actions { display: flex; align-items: center; gap: 10px; }
     }
 
-    .toast-panel button:hover {
-      background: var(--navy-soft);
-    }
-
-    /* Responsive */
-    @media (max-width: 960px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 640px) {
+      .wrap, .hero-content, .location, .divider {
+        width: min(100% - 32px, var(--max));
       }
-    }
-
-    @media (max-width: 560px) {
-      .page {
-        padding: 32px 16px 24px;
-      }
-
-      .brand {
-        margin-bottom: 36px;
-      }
-
-      .brand h1 {
-        font-size: 24px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
-
-      .location-heading {
-        font-size: 16px;
-        margin-bottom: 14px;
-      }
-
-      .card {
-        min-height: 0;
-      }
+      .header-inner { width: min(100% - 24px, var(--max)); min-height: 68px; }
+      .btn-header { padding: 12px 14px; font-size: 11px; }
+      .logo-haven { font-size: 22px; }
+      .grid { grid-template-columns: 1fr; gap: 14px; }
+      .hero { min-height: 320px; }
+      .hero-content { padding: 56px 0; }
+      .locations { padding-top: 48px; }
+      .location { padding-bottom: 40px; }
+      .cta-footer { padding: 64px 20px; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header class="brand">
-      <div class="brand-mark" aria-hidden="true">H</div>
-      <h1>Haven Jiu Jitsu</h1>
-      <p class="subtitle">Free class / Appointments</p>
-    </header>
+  <header class="site-header">
+    <div class="header-inner" id="headerInner">
+      <a class="logo" href="#top" aria-label="Haven Jiu Jitsu home">
+        <span class="logo-haven">HAV<span class="logo-e">E</span>N</span>
+        <span class="logo-sub">
+          JIU
+          <svg class="logo-belt" viewBox="0 0 24 14" aria-hidden="true">
+            <path d="M2 3h7l2 4 2-4h7v2.2H14.2L11.2 11 8.2 5.2H2z" fill="#111"/>
+            <rect x="16.5" y="3" width="5.5" height="2.2" fill="#c8102e"/>
+          </svg>
+          JITSU
+        </span>
+      </a>
 
-    <section class="location" aria-labelledby="loc-baldwinsville">
-      <h2 class="location-heading" id="loc-baldwinsville">Haven Jiu Jitsu — Baldwinsville, NY</h2>
-      <div class="grid">
-        <button type="button" class="card" data-class="Kids Jitsu (Ages 4-6)" data-location="Baldwinsville">
-          <div class="card-title">Kids Jitsu (Ages 4-6)</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>30 min</span>
-          </div>
-          <p class="card-desc">Fun, high-energy intro for little ones. Build coordination, confidence, and listening skills on the mats.</p>
-        </button>
+      <nav class="nav" aria-label="Primary">
+        <a href="#">Academy <span class="caret">▾</span></a>
+        <a class="is-active" href="#classes">Classes</a>
+        <a href="#">Our Coaches</a>
+        <a href="#locations">Locations <span class="caret">▾</span></a>
+        <a href="#">Testimonials</a>
+        <a href="#">Blog</a>
+      </nav>
 
-        <button type="button" class="card" data-class="Kids Jiu Jitsu (Ages 6-13)" data-location="Baldwinsville">
-          <div class="card-title">Kids Jiu Jitsu (Ages 6-13)</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>45 min</span>
-          </div>
-          <p class="card-desc">Age-appropriate grappling that builds focus, respect, and real skills in a supportive kids’ room.</p>
+      <div class="header-actions">
+        <button class="menu-toggle" type="button" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <span></span>
         </button>
+        <a class="btn btn-header" href="#locations">Try a Free Class</a>
+      </div>
+    </div>
+  </header>
 
-        <button type="button" class="card" data-class="Jiu Jitsu Fundamentals" data-location="Baldwinsville">
-          <div class="card-title">Jiu Jitsu Fundamentals</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>45 min</span>
-          </div>
-          <p class="card-desc">Perfect for beginners. Learn core positions, movements, and basics in a welcoming class.</p>
-        </button>
-
-        <button type="button" class="card" data-class="Adult Jiu Jitsu" data-location="Baldwinsville">
-          <div class="card-title">Adult Jiu Jitsu</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>60 min</span>
-          </div>
-          <p class="card-desc">All levels welcome. Train technique, fitness, and live rolling with a supportive adult team.</p>
-        </button>
+  <main id="top">
+    <section class="hero" aria-label="Book a class">
+      <div class="hero-media" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Book a Class</p>
+        <h1>Train Jiu Jitsu<br /><span class="accent">At Haven</span></h1>
+        <p class="hero-lead">Select a location below to book your spot. All experience levels are welcome.</p>
       </div>
     </section>
 
-    <section class="location" aria-labelledby="loc-syracuse">
-      <h2 class="location-heading" id="loc-syracuse">Haven On The Hill — Syracuse, NY</h2>
-      <div class="grid">
-        <button type="button" class="card" data-class="Kids Jitsu (Ages 4-6)" data-location="Haven On The Hill">
-          <div class="card-title">Kids Jitsu (Ages 4-6)</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>30 min</span>
-          </div>
-          <p class="card-desc">Fun, high-energy intro for little ones. Build coordination, confidence, and listening skills on the mats.</p>
-        </button>
+    <div class="locations" id="locations">
+      <!-- BALDWINSVILLE -->
+      <section class="location" id="classes" aria-labelledby="baldwinsville-heading">
+        <p class="location-label">Baldwinsville</p>
+        <h2 id="baldwinsville-heading">Haven Jiu Jitsu - Baldwinsville, NY</h2>
+        <p class="location-hint">Choose a class and book your spot.</p>
 
-        <button type="button" class="card" data-class="Kids Jiu Jitsu (Ages 6-13)" data-location="Haven On The Hill">
-          <div class="card-title">Kids Jiu Jitsu (Ages 6-13)</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>45 min</span>
-          </div>
-          <p class="card-desc">Age-appropriate grappling that builds focus, respect, and real skills in a supportive kids’ room.</p>
-        </button>
+        <div class="grid">
+          <article class="card">
+            <h3 class="card-title">Womens Jiu Jitsu</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>45 min</span>
+            </div>
+            <p class="card-desc">Our women's classes are for women just starting out in jiu jitsu. The class is here to build confidence until you are...</p>
+            <a class="btn book-btn" href="#" data-class="Womens Jiu Jitsu" data-location="Baldwinsville">Book a Class →</a>
+          </article>
 
-        <button type="button" class="card" data-class="Jiu Jitsu Fundamentals" data-location="Haven On The Hill">
-          <div class="card-title">Jiu Jitsu Fundamentals</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>45 min</span>
-          </div>
-          <p class="card-desc">Perfect for beginners. Learn core positions, movements, and basics in a welcoming class.</p>
-        </button>
+          <article class="card">
+            <h3 class="card-title">Little Kids Jiu Jitsu</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>30 min</span>
+            </div>
+            <p class="card-desc">Little kids age range 4-6. If you have a bigger 6 year old who pays attention really well we might also have them try...</p>
+            <a class="btn book-btn" href="#" data-class="Little Kids Jiu Jitsu" data-location="Baldwinsville">Book a Class →</a>
+          </article>
 
-        <button type="button" class="card" data-class="Adult Jiu Jitsu" data-location="Haven On The Hill">
-          <div class="card-title">Adult Jiu Jitsu</div>
-          <div class="card-meta">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-            <span>60 min</span>
-          </div>
-          <p class="card-desc">All levels welcome. Train technique, fitness, and live rolling with a supportive adult team.</p>
-        </button>
+          <article class="card">
+            <h3 class="card-title">Jiu Jitsu Fundamentals</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>45 min</span>
+            </div>
+            <p class="card-desc">Jiu Jitsu Fundamentals</p>
+            <a class="btn book-btn" href="#" data-class="Jiu Jitsu Fundamentals" data-location="Baldwinsville">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Big Kids Jiu Jitsu</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>45 min</span>
+            </div>
+            <p class="card-desc">Big kids jiu jitsu. Age range is 6-12. If your 6 year old is really small and still has trouble following directions try our littl...</p>
+            <a class="btn book-btn" href="#" data-class="Big Kids Jiu Jitsu" data-location="Baldwinsville">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Teens Jiu Jitsu</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>45 min</span>
+            </div>
+            <p class="card-desc">If you have a bigger more athletic teen we will also encourage them to do the adult classes plus teen classes.</p>
+            <a class="btn book-btn" href="#" data-class="Teens Jiu Jitsu" data-location="Baldwinsville">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Muay Thai</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>60 min</span>
+            </div>
+            <p class="card-desc">This is our striking class. MMA gloves / boxing gloves and shinpads are recommended. We do a combination o...</p>
+            <a class="btn book-btn" href="#" data-class="Muay Thai" data-location="Baldwinsville">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Adult Jiu Jitsu</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>60 min</span>
+            </div>
+            <p class="card-desc">We follow a curriculum that is great for all skill levels. If you are brand new you will be encouraged to do fundamentals...</p>
+            <a class="btn book-btn" href="#" data-class="Adult Jiu Jitsu" data-location="Baldwinsville">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Adult Jiu Jitsu - Over 40</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>60 min</span>
+            </div>
+            <p class="card-desc no-clamp">Designed for adults 40+ who want to train jiu jitsu at a smart, sustainable pace. Build technique, strength, mobility, and confidence in a class focused on longevity and staying healthy on the mats.</p>
+            <a class="btn book-btn" href="#" data-class="Adult Jiu Jitsu - Over 40" data-location="Baldwinsville">Book a Class →</a>
+          </article>
+        </div>
+      </section>
+
+      <div class="divider" aria-hidden="true">//</div>
+
+      <!-- SYRACUSE -->
+      <section class="location" id="syracuse" aria-labelledby="syracuse-heading">
+        <p class="location-label">Syracuse</p>
+        <h2 id="syracuse-heading">Haven On The Hill - Syracuse, NY</h2>
+        <p class="location-hint">Choose a class and book your spot.</p>
+
+        <div class="grid">
+          <article class="card">
+            <h3 class="card-title">Kids Jitsu (Ages 4-6)</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>30 min</span>
+            </div>
+            <p class="card-desc">A fun, high-energy introduction to jiu jitsu. Builds confidence, focus, and coordination.</p>
+            <a class="btn book-btn" href="#" data-class="Kids Jitsu (Ages 4-6)" data-location="Haven On The Hill">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Kids Jiu Jitsu (Ages 6-13)</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>45 min</span>
+            </div>
+            <p class="card-desc">Technique, discipline, and fun for growing athletes. A great way to build confidence and learn real jiu jitsu.</p>
+            <a class="btn book-btn" href="#" data-class="Kids Jiu Jitsu (Ages 6-13)" data-location="Haven On The Hill">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Jiu Jitsu Fundamentals</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>60 min</span>
+            </div>
+            <p class="card-desc">Perfect for beginners or anyone looking to build a strong foundation in jiu jitsu.</p>
+            <a class="btn book-btn" href="#" data-class="Jiu Jitsu Fundamentals" data-location="Haven On The Hill">Book a Class →</a>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Adult Jiu Jitsu</h3>
+            <div class="card-meta">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z"/></svg>
+              <span>60 min</span>
+            </div>
+            <p class="card-desc">All skill levels welcome. Build technique, get a great workout, and be part of a supportive community.</p>
+            <a class="btn book-btn" href="#" data-class="Adult Jiu Jitsu" data-location="Haven On The Hill">Book a Class →</a>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <section class="cta-footer" aria-label="Contact">
+      <div class="cta-footer-media" aria-hidden="true"></div>
+      <div class="cta-footer-inner">
+        <p class="cta-eyebrow">Questions?</p>
+        <h2>Ready to Get Started?</h2>
+        <p>If you're not sure which class is right for you, feel free to reach out. We're happy to help!</p>
+        <a class="btn" href="#" id="contactBtn">Contact Us →</a>
       </div>
     </section>
-  </div>
+  </main>
 
-  <footer class="footer">
-    Booking mockup for Haven Jiu Jitsu
-  </footer>
+  <p class="site-note">Booking mockup for Haven Jiu Jitsu</p>
 
   <div class="toast" id="toast" role="dialog" aria-modal="true" aria-labelledby="toast-title" hidden>
     <div class="toast-panel">
-      <h2 id="toast-title">Coming soon</h2>
-      <p id="toast-body">Online booking for this class isn’t live yet. Check back soon or contact Haven Jiu Jitsu to schedule your free class.</p>
-      <button type="button" id="toast-close">Got it</button>
+      <h3 id="toast-title">Coming soon</h3>
+      <p id="toast-body">Online booking isn’t live yet. Contact Haven Jiu Jitsu to schedule your class.</p>
+      <button type="button" class="btn" id="toast-close">Got it</button>
     </div>
   </div>
 
   <script>
     (function () {
+      var header = document.getElementById("headerInner");
+      var toggle = document.getElementById("menuToggle");
       var toast = document.getElementById("toast");
       var toastBody = document.getElementById("toast-body");
       var toastClose = document.getElementById("toast-close");
       var lastFocus = null;
 
-      function openToast(className, location) {
-        toastBody.textContent =
-          "Booking for “" + className + "” at " + location +
-          " isn’t live yet. This is a mockup — contact Haven Jiu Jitsu to schedule your free class.";
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          var open = header.classList.toggle("nav-open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        });
+      }
+
+      function openToast(message) {
+        toastBody.textContent = message;
         toast.hidden = false;
         toast.classList.add("is-open");
         toastClose.focus();
@@ -390,19 +836,31 @@
         if (lastFocus) lastFocus.focus();
       }
 
-      document.querySelectorAll(".card").forEach(function (card) {
-        card.addEventListener("click", function () {
-          lastFocus = card;
-          openToast(card.getAttribute("data-class"), card.getAttribute("data-location"));
+      document.querySelectorAll(".book-btn").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
+          lastFocus = btn;
+          openToast(
+            "Booking for “" + btn.getAttribute("data-class") + "” at " +
+            btn.getAttribute("data-location") +
+            " isn’t live yet. This is a Haven Jiu Jitsu mockup — reach out to schedule your class."
+          );
         });
       });
 
-      toastClose.addEventListener("click", closeToast);
+      var contactBtn = document.getElementById("contactBtn");
+      if (contactBtn) {
+        contactBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          lastFocus = contactBtn;
+          openToast("Contact form isn’t wired yet. Reach out to Haven Jiu Jitsu to get started.");
+        });
+      }
 
+      toastClose.addEventListener("click", closeToast);
       toast.addEventListener("click", function (e) {
         if (e.target === toast) closeToast();
       });
-
       document.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && toast.classList.contains("is-open")) closeToast();
       });
