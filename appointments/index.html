@@ -58,58 +58,22 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      min-height: 76px;
+      min-height: 93px;
       width: min(100% - 40px, var(--max));
       margin-inline: auto;
     }
 
     .logo {
       display: flex;
-      flex-direction: column;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .logo-haven {
-      font-family: "Archivo", var(--font);
-      font-weight: 900;
-      font-size: 26px;
-      letter-spacing: 0.08em;
-      color: var(--black);
-      text-transform: uppercase;
-    }
-
-    .logo-haven .logo-e {
-      position: relative;
-      display: inline-block;
-    }
-
-    .logo-haven .logo-e::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: 0.08em;
-      height: 0.18em;
-      background: var(--red);
-    }
-
-    .logo-sub {
-      display: flex;
       align-items: center;
-      gap: 6px;
-      margin-top: 3px;
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: var(--red);
-      text-transform: uppercase;
+      flex-shrink: 0;
+      line-height: 0;
     }
 
-    .logo-belt {
-      width: 18px;
-      height: 10px;
-      flex-shrink: 0;
+    .logo img {
+      width: 151px;
+      height: auto;
+      display: block;
     }
 
     .nav {
@@ -581,7 +545,7 @@
       }
       .header-inner { width: min(100% - 24px, var(--max)); min-height: 68px; }
       .btn-header { padding: 12px 14px; font-size: 11px; }
-      .logo-haven { font-size: 22px; }
+      .logo img { width: 120px; }
       .grid { grid-template-columns: 1fr; gap: 14px; }
       .hero { min-height: 320px; }
       .hero-content { padding: 56px 0; }
@@ -595,15 +559,12 @@
   <header class="site-header">
     <div class="header-inner" id="headerInner">
       <a class="logo" href="#top" aria-label="Haven Jiu Jitsu home">
-        <span class="logo-haven">HAV<span class="logo-e">E</span>N</span>
-        <span class="logo-sub">
-          JIU
-          <svg class="logo-belt" viewBox="0 0 24 14" aria-hidden="true">
-            <path d="M2 3h7l2 4 2-4h7v2.2H14.2L11.2 11 8.2 5.2H2z" fill="#111"/>
-            <rect x="16.5" y="3" width="5.5" height="2.2" fill="#c8102e"/>
-          </svg>
-          JITSU
-        </span>
+        <img
+          src="../assets/images/logo-haven-lockup.png"
+          alt="Haven Jiu Jitsu Logo"
+          width="500"
+          height="300"
+        />
       </a>
 
       <nav class="nav" aria-label="Primary">
