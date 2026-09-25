@@ -163,16 +163,19 @@
     .btn:hover {
       background: #e01830;
       color: #fff;
-      box-shadow: 0 2px 8px rgba(200, 16, 46, 0.35);
+      box-shadow: 0 3px 10px rgba(200, 16, 46, 0.4);
+      filter: brightness(1.08);
     }
 
     .card:hover .btn {
       background: #e01830;
-      box-shadow: 0 2px 8px rgba(200, 16, 46, 0.28);
+      box-shadow: 0 3px 10px rgba(200, 16, 46, 0.35);
+      filter: brightness(1.08);
     }
 
     .btn:active {
       background: var(--red-hover);
+      filter: none;
     }
 
     .btn-header { flex-shrink: 0; }
@@ -363,9 +366,9 @@
       display: flex;
       flex-direction: column;
       background: #fff;
-      border: 1px solid var(--card-border);
+      border: 2px solid var(--card-border);
       border-radius: 10px;
-      padding: 22px 20px 20px;
+      padding: 21px 19px 19px;
       box-shadow: 0 1px 2px rgba(0,0,0,0.03);
       min-height: 100%;
       text-align: left;
@@ -373,18 +376,34 @@
         border-color 180ms ease,
         box-shadow 180ms ease,
         transform 180ms ease;
+      will-change: transform;
     }
 
     .card:hover {
       border-color: var(--red);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(200, 16, 46, 0.12);
-      transform: translateY(-4px);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.14),
+        0 4px 10px rgba(200, 16, 46, 0.18);
+      transform: translateY(-6px);
     }
 
     .card:focus-within {
       border-color: var(--red);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(200, 16, 46, 0.12);
-      transform: translateY(-4px);
+      box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.14),
+        0 4px 10px rgba(200, 16, 46, 0.18);
+      transform: translateY(-6px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card,
+      .btn {
+        transition: none;
+      }
+      .card:hover,
+      .card:focus-within {
+        transform: none;
+      }
     }
 
     .card-title {
