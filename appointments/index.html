@@ -52,7 +52,15 @@
     html { scroll-behavior: smooth; }
 
     .appointments-page img { max-width: 100%; display: block; }
-    .appointments-page a { color: inherit; text-decoration: none; }
+    /* Exclude Book/CTA buttons so inherit cannot darken white labels */
+    .appointments-page a:not(.btn):not(.book-btn) {
+      color: inherit;
+      text-decoration: none;
+    }
+    .appointments-page a.btn,
+    .appointments-page a.book-btn {
+      text-decoration: none;
+    }
     .appointments-page button { font: inherit; cursor: pointer; border: none; background: none; }
 
     .wrap {
@@ -123,13 +131,17 @@
       opacity: 0.7;
     }
 
-    .btn {
+    .btn,
+    .book-btn,
+    a.btn,
+    a.book-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       background: var(--red);
-      color: #fff;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
       font-weight: 700;
       font-size: 12px;
       letter-spacing: 0.08em;
@@ -140,20 +152,54 @@
       white-space: nowrap;
     }
 
-    .btn:hover {
+    .btn:link,
+    .btn:visited,
+    .btn:hover,
+    .btn:focus,
+    .btn:active,
+    .book-btn:link,
+    .book-btn:visited,
+    .book-btn:hover,
+    .book-btn:focus,
+    .book-btn:active,
+    a.btn:link,
+    a.btn:visited,
+    a.btn:hover,
+    a.btn:focus,
+    a.btn:active,
+    a.book-btn:link,
+    a.book-btn:visited,
+    a.book-btn:hover,
+    a.book-btn:focus,
+    a.book-btn:active {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .btn:hover,
+    .book-btn:hover,
+    a.btn:hover,
+    a.book-btn:hover {
       background: #e01830;
-      color: #fff;
       box-shadow: 0 3px 10px rgba(200, 16, 46, 0.4);
       filter: brightness(1.08);
     }
 
-    .card:hover .btn {
+    .card:hover .btn,
+    .card:hover .book-btn,
+    .card:hover a.btn,
+    .card:hover a.book-btn {
       background: #e01830;
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
       box-shadow: 0 3px 10px rgba(200, 16, 46, 0.35);
       filter: brightness(1.08);
     }
 
-    .btn:active {
+    .btn:active,
+    .book-btn:active,
+    a.btn:active,
+    a.book-btn:active {
       background: var(--red-hover);
       filter: none;
     }
