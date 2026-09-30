@@ -480,6 +480,75 @@ p:last-child {
   color: var(--white-pure);
 }
 
+/* Opening night gallery */
+.section-gallery {
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(200, 16, 46, 0.12), transparent 55%),
+    linear-gradient(180deg, #0c0c0c 0%, #121212 100%);
+}
+
+.gallery-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+
+  .gallery-item-wide {
+    grid-column: span 2;
+  }
+}
+
+.gallery-item {
+  margin: 0;
+  overflow: hidden;
+  background: var(--black-elevated);
+  aspect-ratio: 3 / 4;
+}
+
+.gallery-item-wide {
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 639px) {
+  .gallery-item-wide {
+    grid-column: span 2;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s var(--ease);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item:hover img {
+    transform: none;
+  }
+}
+
 /* Locations */
 .section-red {
   background:
