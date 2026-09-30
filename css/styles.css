@@ -480,6 +480,119 @@ p:last-child {
   color: var(--white-pure);
 }
 
+/* Opening night gallery — bento grid */
+.section-gallery {
+  background:
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(200, 16, 46, 0.12), transparent 55%),
+    linear-gradient(180deg, #0c0c0c 0%, #121212 100%);
+}
+
+.gallery-grid {
+  max-width: var(--max);
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  align-items: stretch;
+}
+
+.gallery-item {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--black-elevated);
+  aspect-ratio: 1 / 1;
+  grid-column: span 1;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+/* Mobile: featured tiles span full width so rows never orphan */
+.gallery-item--feature {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+}
+
+@media (min-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  /* Tablet: uniform 3-col squares — 15 tiles / 5 even rows */
+  .gallery-item--feature {
+    grid-column: span 1;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-grid {
+    /* 6-col bento: standard tiles span 2, features span 4 — row units always sum to 6 */
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .gallery-item {
+    grid-column: span 2;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Width 4/6 + aspect 2/1 ⇒ same height as a span-2 square (gutters align) */
+  .gallery-item--feature {
+    grid-column: span 4;
+    aspect-ratio: 2 / 1;
+  }
+}
+
+.gallery-item img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.65s var(--ease), filter 0.65s var(--ease);
+}
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent 55%, rgba(10, 10, 10, 0.28) 100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.06);
+  }
+
+  .gallery-item:hover::after {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item img {
+    transition: none;
+  }
+
+  .gallery-item:hover img {
+    transform: none;
+    filter: none;
+  }
+}
+
 /* Locations */
 .section-red {
   background:
